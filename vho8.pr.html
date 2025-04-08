@@ -67,6 +67,18 @@
       font-family: 'Prompt', sans-serif;
       padding: 20px;
     }
+
+    .image-preview {
+      cursor: pointer;
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+    }
+
+    .large-image {
+      max-width: 90%;
+      max-height: 80vh;
+    }
   </style>
 </head>
 <body>
@@ -113,13 +125,16 @@
           `;
 
           card.addEventListener('click', () => {
+            // เปิดกล่องข้อมูลข่าว
             Swal.fire({
               title: `<strong>${item["หัวข้อข่าว"]}</strong>`,
               html: `
                 <div style="text-align:left; font-size:16px; line-height:1.8;">
                   <p><strong>📅 วันที่:</strong> ${item["วันที่"] || ''}</p>
                   <p style="font-size:18px; color:#333; margin-top:10px;">${item["รายละเอียด"] || ''}</p>
-                  ${item["ลิงก์เพิ่มเติม(ภาพ)"] ? `<img src="${item["ลิงก์เพิ่มเติม(ภาพ)"]}" alt="ภาพประกอบ" style="max-width:100%; margin-top:15px; border-radius:8px; box-shadow: 0 2px 10px rgba(0,0,0,0.15);">` : ''}
+                  ${item["ลิงก์เพิ่มเติม(ภาพ)"] ? `
+                    <img src="${item["ลิงก์เพิ่มเติม(ภาพ)"]}" alt="ภาพประกอบ" class="image-preview" onclick="openImage('${item["ลิงก์เพิ่มเติม(ภาพ)"]}')">
+                  ` : ''}
                 </div>
               `,
               icon: '',
@@ -139,6 +154,21 @@
         console.error("เกิดข้อผิดพลาด:", error);
         document.getElementById('news-container').innerHTML = "<p>ไม่สามารถโหลดข้อมูลได้</p>";
       });
+
+    function openImage(imageUrl) {
+      // เปิด SweetAlert2 สำหรับแสดงภาพขนาดใหญ่ โดยไม่ปิดกล่องข้อมูลข่าว
+      Swal.fire({
+        imageUrl: imageUrl,
+        imageClass: 'large-image',
+        showConfirmButton: true,
+        confirmButtonText: 'ปิด',
+        showCloseButton: true,
+        didOpen: () => {
+          // เมื่อเปิดภาพแล้วจะให้ SweetAlert2 เปิดแบบซ้อนกับกล่องข้อมูลข่าว
+          Swal.getPopup().style.zIndex = 9999;  // ตั้งค่า z-index ให้ภาพขึ้นมาซ้อนบน
+        }
+      });
+    }
   </script>
 </body>
 </html>
