@@ -62,6 +62,11 @@
       font-size: 14px;
       color: #888;
     }
+
+    .swal2-popup.custom-swal-popup {
+      font-family: 'Prompt', sans-serif;
+      padding: 20px;
+    }
   </style>
 </head>
 <body>
@@ -109,16 +114,21 @@
 
           card.addEventListener('click', () => {
             Swal.fire({
-              title: item["หัวข้อข่าว"],
+              title: `<strong>${item["หัวข้อข่าว"]}</strong>`,
               html: `
-                <p style="text-align:left; font-size:16px;"><strong>📅 วันที่:</strong> ${item["วันที่"] || ''}</p>
-                <p style="text-align:left; font-size:22px;">${item["รายละเอียด"] || ''}</p>
-                ${item["ลิงก์เพิ่มเติม(ภาพ)"] ? `<img src="${item["ลิงก์เพิ่มเติม(ภาพ)"]}" alt="ภาพประกอบ" style="max-width:350px; margin-top:10px; border-radius:8px;">` : ''}
+                <div style="text-align:left; font-size:16px; line-height:1.8;">
+                  <p><strong>📅 วันที่:</strong> ${item["วันที่"] || ''}</p>
+                  <p style="font-size:18px; color:#333; margin-top:10px;">${item["รายละเอียด"] || ''}</p>
+                  ${item["ลิงก์เพิ่มเติม(ภาพ)"] ? `<img src="${item["ลิงก์เพิ่มเติม(ภาพ)"]}" alt="ภาพประกอบ" style="max-width:100%; margin-top:15px; border-radius:8px; box-shadow: 0 2px 10px rgba(0,0,0,0.15);">` : ''}
+                </div>
               `,
               icon: '',
               confirmButtonText: 'ปิด',
               width: 600,
-              showCloseButton: true
+              showCloseButton: true,
+              customClass: {
+                popup: 'custom-swal-popup'
+              }
             });
           });
 
