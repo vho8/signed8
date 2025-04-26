@@ -5,53 +5,83 @@
   <link rel="icon" href="https://img2.imgbiz.com/imgbiz/-8.png">
   <meta charset="UTF-8">
   <title>ปิดระบบลงนาม</title>
+
+  <!-- ฟอนต์ไทยสวยๆ -->
+  <link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;700&display=swap" rel="stylesheet">
+
   <style>
-    body {
-      font-family: 'Prompt', sans-serif;
-      background-color: #f9f9f9;
-      text-align: center;
-      padding: 100px 20px;
+    html, body {
+      height: 100%;
       margin: 0;
-      position: relative;
+      padding: 0;
+      overflow: hidden; /* ปิดสกอร์บาร์ */
+      font-family: 'Sarabun', sans-serif; /* ใช้ฟอนต์ไทย Sarabun */
+      background-color: #f9f9f9;
     }
+
     .logo {
       position: fixed;
       top: 20px;
       right: 20px;
       z-index: 1000;
     }
+
     .logo img {
       width: 80px;
       height: auto;
     }
+
+    .content {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center; /* จัดกลางแนวตั้ง */
+      align-items: center;     /* จัดกลางแนวนอน */
+      text-align: center;
+      padding: 20px;
+    }
+
     h1 {
       font-size: 32px;
       color: #cc0000;
-      margin-top: 20px;
+      margin: 20px 0 10px;
     }
+
     p {
-      font-size: 18px;
+      font-size: 20px;
+      margin-bottom: 30px;
     }
+
     .main-image {
-      margin-top: 40px;
-      width: 300px;
-      max-width: 100%;
+      width: 450px;
+      max-width: 90%;
+      height: auto;
+      margin-bottom: 20px;
+    }
+
+    .gif-image {
+      width: 250px;
+      max-width: 80%;
       height: auto;
     }
   </style>
 </head>
+
 <body>
 
-  <!-- โลโก้อยู่มุมขวาบนตลอด -->
+  <!-- โลโก้มุมขวาบน -->
   <div class="logo">
     <img src="https://img2.imgbiz.com/imgbiz/-8.png" alt="โลโก้">
   </div>
 
-  <!-- เนื้อหาอยู่กลาง -->
-  <img src="https://img5.pic.in.th/file/secure-sv1/-684d1ae67524c8efe4.png" alt="ภาพหลัก" width="450" height="auto">
-  <h1>ระบบปิดอยู่</h1>
-  <p>ระหว่างวันที่ ๒๗ - ๓๐ เมษายน ๒๕๖๘</p>
-  <img src="https://cdn.dribbble.com/userupload/24031440/file/original-09559e5c3ffd3116a53cc071716e4d88.gif" alt="" width="250" height="auto">
+  <!-- เนื้อหาตรงกลางแน่นอน -->
+  <div class="content">
+    <img class="main-image" src="https://img5.pic.in.th/file/secure-sv1/-684d1ae67524c8efe4.png" alt="ภาพหลัก">
+    <h1>ระบบปิดอยู่</h1>
+    <p>ระหว่างวันที่ ๒๗ - ๓๐ เมษายน ๒๕๖๘</p>
+    <img class="gif-image" src="https://cdn.dribbble.com/userupload/24031440/file/original-09559e5c3ffd3116a53cc071716e4d88.gif" alt="GIF ขอบคุณ">
+  </div>
+
 </body>
 </html>
 
